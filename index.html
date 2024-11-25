@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>爱心烟花页面</title>
+<style>
+    body {
+        margin: 0;
+        overflow: hidden;
+        background: black;
+    }
+    .heart {
+        position: absolute;
+        color: red;
+        font-size: 20px;
+        animation: rise 3s ease-in-out infinite;
+    }
+    @keyframes rise {
+        from {
+            bottom: 0;
+            opacity: 0;
+        }
+        to {
+            bottom: 100%;
+            opacity: 1;
+        }
+    }
+</style>
+</head>
+<body>
+<script>
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.innerHTML = '❤️';
+
+        // 随机位置
+        const x = Math.random() * window.innerWidth;
+        heart.style.left = `${x}px`;
+
+        // 添加到body
+        document.body.appendChild(heart);
+
+        // 设置动画结束后的清除
+        setTimeout(() => {
+            heart.remove();
+        }, 3000);
+
+        return heart;
+    }
+
+    function launchHearts() {
+        setInterval(() => {
+            createHeart();
+        }, 200); // 每200毫秒发射一次爱心
+    }
+
+    window.onload = launchHearts;
+</script>
+</body>
+</html>
